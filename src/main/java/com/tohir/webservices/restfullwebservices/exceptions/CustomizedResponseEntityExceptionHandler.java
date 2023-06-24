@@ -33,6 +33,8 @@ public class CustomizedResponseEntityExceptionHandler extends ResponseEntityExce
 
     }
 
+
+    /***==============  handle @Valid exceptions  =================***/
     @Override
     protected ResponseEntity<Object> handleMethodArgumentNotValid(MethodArgumentNotValidException ex, HttpHeaders headers, HttpStatusCode status, WebRequest request) {
 
