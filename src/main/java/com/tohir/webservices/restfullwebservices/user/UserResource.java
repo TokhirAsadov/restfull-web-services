@@ -1,5 +1,6 @@
 package com.tohir.webservices.restfullwebservices.user;
 
+import com.tohir.webservices.restfullwebservices.exceptions.UserNotFoundException;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
@@ -23,7 +24,10 @@ public class UserResource {
 
     @GetMapping("/users/{id}")
     public User retrieveUser(@PathVariable Integer id) {
-        return service.findOne(id);
+        User user = service.findOne(id);
+        if (user == null)
+            throw new UserNotFoundException("id: " + id);
+        return user;
     }
 
     @PostMapping("/users")
