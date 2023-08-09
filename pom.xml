@@ -37,10 +37,10 @@
 		</dependency>
 
 <!--		support xml request -->
-		<dependency>
+	<!--	<dependency>
 			<groupId>com.fasterxml.jackson.dataformat</groupId>
 			<artifactId>jackson-dataformat-xml</artifactId>
-		</dependency>
+		</dependency>-->
 
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
