@@ -18,8 +18,8 @@ public class FilteringController {
     public MappingJacksonValue filtering() {
         SomeBean someBean = new SomeBean("field1", "field2", "field3");
 
-        MappingJacksonValue mappingJacksonValue = new MappingJacksonValue(someBean);
-        PropertyFilter filter = SimpleBeanPropertyFilter.filterOutAllExcept("field1","field3");
+        MappingJacksonValue mappingJacksonValue = new MappingJacksonValue(someBean);//dynamic filtering
+        PropertyFilter filter = SimpleBeanPropertyFilter.filterOutAllExcept("field1","field3");// to select fields which we want to get them.
         FilterProvider filters = new SimpleFilterProvider().addFilter("SomeBeanFilter",filter);
         mappingJacksonValue.setFilters(filters);
 
