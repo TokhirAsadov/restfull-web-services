@@ -5,7 +5,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 //@JsonIgnoreProperties("field1")// field1 was ignored that we never get it when we send request (*) static filtering
-@JsonFilter("SomeBeanFilter")
+@JsonFilter("SomeBeanFilter")//provides dynamic filtering
 public class SomeBean {
     private String field1;
 
