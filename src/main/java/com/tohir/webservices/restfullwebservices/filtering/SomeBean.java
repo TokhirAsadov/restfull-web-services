@@ -5,7 +5,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 public class SomeBean {
     private String field1;
 
-
+    @JsonIgnore // field2 was ignored that we never get it
     private String field2;
     private String field3;
 
