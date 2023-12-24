@@ -26,11 +26,18 @@ public class FilteringController {
         return mappingJacksonValue;
     }
 
-    @GetMapping("/filtering-list")
-    public List<SomeBean> filteringList() {
-        return Arrays.asList(
-                new SomeBean("field1","field2","field3"),
-                new SomeBean("field4","field5","field6")
+    @GetMapping("/filtering-list")//field1 will have to ignored
+    public MappingJacksonValue filteringList() {
+        List<SomeBean> list = Arrays.asList(
+                new SomeBean("field1", "field2", "field3"),
+                new SomeBean("field4", "field5", "field6")
         );
+
+        MappingJacksonValue mappingJacksonValue = new MappingJacksonValue(list);//dynamic filtering
+        PropertyFilter filter = SimpleBeanPropertyFilter.filterOutAllExcept("field2","field3");// to select fields which we want to get them.
+        FilterProvider filters = new SimpleFilterProvider().addFilter("SomeBeanFilter",filter);
+        mappingJacksonValue.setFilters(filters);
+
+        return mappingJacksonValue;
     }
 }
