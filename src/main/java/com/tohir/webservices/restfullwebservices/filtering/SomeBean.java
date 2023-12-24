@@ -3,11 +3,11 @@ package com.tohir.webservices.restfullwebservices.filtering;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
-//@JsonIgnoreProperties("field1")// field1 was ignored that we never get it when we send request
+//@JsonIgnoreProperties("field1")// field1 was ignored that we never get it when we send request (*) static filtering
 public class SomeBean {
     private String field1;
 
-    //@JsonIgnore // field2 was ignored that we never get it when we send request
+    //@JsonIgnore // field2 was ignored that we never get it when we send request (*) static filtering
     private String field2;
     private String field3;
 
