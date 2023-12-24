@@ -32,6 +32,12 @@
 			<artifactId>spring-boot-starter-actuator</artifactId>
 		</dependency>
 
+		<!--		HAL - JSON Hypertext Application Language      -->
+		<dependency>
+			<groupId>org.springframework.data</groupId>
+			<artifactId>spring-data-rest-hal-explorer</artifactId>
+		</dependency>
+
 <!--		HATEOAS - Hypermedia as the Engine of Application State    -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
