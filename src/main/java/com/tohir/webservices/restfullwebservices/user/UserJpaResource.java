@@ -1,6 +1,7 @@
 package com.tohir.webservices.restfullwebservices.user;
 
 import com.tohir.webservices.restfullwebservices.exceptions.UserNotFoundException;
+import com.tohir.webservices.restfullwebservices.jpa.PostRepository;
 import com.tohir.webservices.restfullwebservices.jpa.UserRepository;
 import jakarta.validation.Valid;
 import org.springframework.hateoas.EntityModel;
@@ -19,9 +20,11 @@ import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 @RestController
 public class UserJpaResource {
     private UserRepository repository;
+    private PostRepository postRepository;
 
-    public UserJpaResource(UserRepository repository) {
+    public UserJpaResource(UserRepository repository,PostRepository postRepository) {
         this.repository = repository;
+        this.postRepository = postRepository;
     }
 
     @GetMapping("/jpa/users")
@@ -83,4 +86,20 @@ public class UserJpaResource {
         return user.get().getPosts();
     }
 
+    @PostMapping("/jpa/users/{id}/posts")
+    public ResponseEntity<Object> createdPostForUser(@PathVariable Integer id, @Valid @RequestBody Post post) {
+        Optional<User> user = repository.findById(id);
+        if (user.isEmpty())
+            throw new UserNotFoundException("id: " + id);
+
+        post.setUser(user.get());
+
+        Post save = postRepository.save(post);
+
+        URI location = ServletUriComponentsBuilder.fromCurrentRequest()
+                .path("/{id}")
+                .buildAndExpand(save.getId())
+                .toUri();
+        return ResponseEntity.created(location).build();
+    }
 }
