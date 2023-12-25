@@ -73,4 +73,14 @@ public class UserJpaResource {
                 .toUri();
         return ResponseEntity.created(location).build();
     }
+
+    @GetMapping("/jpa/users/{id}/posts")
+    public List<Post> retrievePostsForUser(@PathVariable Integer id) {
+        Optional<User> user = repository.findById(id);
+        if (user.isEmpty())
+            throw new UserNotFoundException("id: " + id);
+
+        return user.get().getPosts();
+    }
+
 }
