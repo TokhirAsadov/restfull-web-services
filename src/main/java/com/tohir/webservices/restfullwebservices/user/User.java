@@ -18,6 +18,9 @@ public class User {
     @GeneratedValue
     private Integer id;
 
+
+//    @DecimalMax(value = "6",message = "Maximum grade can be 6.") We can use this way to check numeric types like (integer, float, double, long)
+//    @DecimalMin(value = "0",message = "Minimum grade can be 0.")
     @Size(min=2, message = "Name should have at least two characters")
     @JsonProperty("user_name")
     private String name;
@@ -27,7 +30,7 @@ public class User {
     private LocalDate birthDate;
 
     @OneToMany(mappedBy = "user")
-//    @JsonIgnore
+    @JsonIgnore
     private List<Post> posts;
 
     protected User(){
